@@ -1,0 +1,25 @@
+# Environment & Secrets (NEVER commit .env!)
+.env
+.env.local
+*.pem
+*.key
+
+# Maven & Java build outputs
+target/
+**/target/
+*.jar
+*.war
+*.class
+hs_err_pid*
+
+# Generated runtime logs & receipts
+logs/
+receipts/
+data-exports/
+
+# IDE & OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

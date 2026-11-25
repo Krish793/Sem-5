@@ -1,0 +1,20 @@
+services:
+  kalasetu-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kalasetu-marketplace
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - SERVER_PORT=8080
+      - KALASETU_PAYMENT_TEST_MODE=true
+      - KALASETU_DATA_DIR=/app/runtime-data
+    volumes:
+      - kalasetu_runtime:/app/runtime-data
+    restart: unless-stopped
+
+volumes:
+  kalasetu_runtime:

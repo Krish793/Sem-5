@@ -1,0 +1,28 @@
+server:
+  port: ${SERVER_PORT:8080}
+  address: 0.0.0.0
+
+spring:
+  application:
+    name: kalasetu-marketplace
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+kalasetu:
+  mode: ${KALASETU_MODE:auto}
+  supabase-url: ${SUPABASE_URL:}
+  supabase-service-key: ${SUPABASE_SERVICE_ROLE_KEY:}
+  storage-bucket: ${SUPABASE_STORAGE_BUCKET:product-images}
+  data-dir: ${KALASETU_DATA_DIR:./runtime-data}
+  payment-test-mode: ${KALASETU_PAYMENT_TEST_MODE:true}

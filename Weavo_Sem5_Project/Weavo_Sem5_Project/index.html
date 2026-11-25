@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weavo — From the loom to your living room | Local Artisan Marketplace</title>
+    <meta name="description" content="Connecting rural Gujarat craftspeople directly with buyers. Authentic Bandhani, Patola, Ajrakh & Terracotta. 92% direct artisan payout." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- AUTH MODAL / PORTAL (Shown on Demand / When Ordering) -->
+    <!-- ============================================================ -->
+    <div id="authScreen" class="auth-screen modal-backdrop hidden">
+        <div class="auth-modal-wrapper">
+            <button class="auth-modal-close" onclick="closeAuthModal()" title="Close">&times;</button>
+            <div class="auth-visual-pane">
+                <div class="auth-visual-content">
+                    <div class="brand-crest">
+                        <span class="crest-dot c1"></span>
+                        <span class="crest-dot c2"></span>
+                        <span class="crest-dot c3"></span>
+                    </div>
+                    <h1 class="visual-title">WEAVO</h1>
+                    <p class="visual-tagline">From the loom to your living room.</p>
+                    
+                    <div class="visual-ribbon-card">
+                        <img src="/images/weavo-ribbon-hero.svg" alt="Weavo Ribbon Sculpture" class="auth-sculpture-img" />
+                        <div class="visual-caption">
+                            <strong>Authentic Craft Clusters</strong>
+                            <span>Jamnagar · Patan · Dhamadka · Gundiyali · Bhujodi</span>
+                        </div>
+                    </div>
+
+                    <div class="visual-features">
+                        <div class="v-feat">
+                            <span class="v-badge">92%</span>
+                            <p>Direct Artisan Payout</p>
+                        </div>
+                        <div class="v-feat">
+                            <span class="v-badge">GI</span>
+                            <p>Certified Lineage</p>
+                        </div>
+                        <div class="v-feat">
+                            <span class="v-badge">DPDP</span>
+                            <p>Act 2023 Compliant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-form-pane">
+                <div class="auth-card-modern">
+                    <div class="auth-header">
+                        <div class="mobile-brand-pill">
+                            <span class="pill-dot"></span>
+                            WEAVO ARTISAN MARKETPLACE
+                        </div>
+                        <h2 id="authModalTitle">Sign in to Weavo</h2>
+                        <p class="auth-sub" id="authModalSub">Sign in to complete your order or manage listings</p>
+                    </div>
+
+                    <!-- Portal Selector Tabs -->
+                    <div class="portal-tabs">
+                        <button type="button" class="portal-tab active" data-portal="buyer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                            <span>Buyer Portal</span>
+                        </button>
+                        <button type="button" class="portal-tab" data-portal="seller">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                            <span>Artisan Seller</span>
+                        </button>
+                        <button type="button" class="portal-tab" data-portal="admin">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>Evaluator / Admin</span>
+                        </button>
+                    </div>
+
+                    <!-- Demo 1-Click Persona Login -->
+                    <div class="quick-login-box">
+                        <span class="quick-title">Quick Demo Sign-In (1 Click)</span>
+                        <div id="demoAccountBtns" class="demo-buttons-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="auth-divider"><span>or sign in with email</span></div>
+
+                    <form id="loginForm" class="auth-form-fields">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="input-icon-wrap">
+                                <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>
+                                <input type="email" id="loginEmail" placeholder="you@weavo.demo" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-icon-wrap">
+                                <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 118 0v4"/></svg>
+                                <input type="password" id="loginPassword" value="Weavo@2026" required />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary-loom btn-block" id="loginSubmitBtn">
+                            <span>Continue to Marketplace</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </button>
+                    </form>
+
+                    <div id="authMessage" class="auth-msg-toast"></div>
+
+                    <div class="academic-badge-footer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <span><strong>Verified Fair-Trade Gateway</strong> · Instant Direct Karigar Payouts · DPDP Act 2023 Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN APPLICATION WRAPPER (Directly Accessible Storefront) -->
+    <!-- ============================================================ -->
+    <div id="mainApp" class="main-app">
+        <!-- Top Startup Live Announcement & Impact Ticker -->
+        <div class="sys-ribbon startup-ribbon">
+            <div class="container sys-ribbon-inner">
+                <div class="sys-left">
+                    <span class="badge-tag live-dot">FAIR TRADE STARTUP</span>
+                    <span class="sys-meta">✨ Direct Rural Gujarat Looms · <strong>92% Direct Karigar Payout</strong> · 100% GI Heritage Authenticity</span>
+                </div>
+                <div class="sys-right">
+                    <button class="sys-btn" id="openCanvaHubBtn" title="View Weavo Startup Pitch & Architecture">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        <span>Startup Pitch Deck & Docs</span>
+                    </button>
+                    <span id="backendModeBadge" class="backend-pill">Connecting...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Floating Liquid Glass Navigation Bar -->
+        <header class="navbar-modern navbar-liquid-glass">
+            <div class="liquid-glow-aura"></div>
+            <div class="container navbar-inner">
+                <!-- Brand Logo with Liquid Morph Mark -->
+                <div class="nav-brand" onclick="goHome()">
+                    <div class="nav-ribbon-mark liquid-morph">
+                        <span class="rm1"></span>
+                        <span class="rm2"></span>
+                        <span class="rm3"></span>
+                        <div class="mark-liquid-bubble"></div>
+                    </div>
+                    <div class="nav-brand-title">
+                        <h2>WEAVO</h2>
+                        <span class="tagline">From the loom to your living room</span>
+                    </div>
+                </div>
+
+                <!-- BUYER NAVIGATION (Liquid Capsules) -->
+                <nav id="buyerNav" class="nav-role-group nav-liquid-group">
+                    <button class="nav-item active" data-page="marketplace">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+                        <span>Explore Crafts</span>
+                    </button>
+                    <button class="nav-item" data-page="heritage">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20"/><path d="M2 12h20"/></svg>
+                        <span>GI Heritage</span>
+                    </button>
+                    <button class="nav-item cart-btn-item" data-page="cart">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                        <span>Cart</span>
+                        <span class="cart-pill-badge" id="cartCountBadge">0</span>
+                    </button>
+                    <button class="nav-item" data-page="orders">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <span>My Orders</span>
+                    </button>
+                </nav>
+
+                <!-- SELLER NAVIGATION (Artisan Studio) -->
+                <nav id="sellerNav" class="nav-role-group nav-liquid-group hidden">
+                    <button class="nav-item active" data-page="seller-dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        <span>Artisan Dashboard</span>
+                    </button>
+                    <button class="nav-item" data-page="seller-manage">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        <span>Manage & Customize</span>
+                    </button>
+                    <button class="nav-item" data-page="seller-add">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                        <span>Add New Craft</span>
+                    </button>
+                    <button class="nav-item" id="exportCsvNavBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Export CSV</span>
+                    </button>
+                </nav>
+
+                <!-- ADMIN NAVIGATION (Startup Architecture) -->
+                <nav id="adminNav" class="nav-role-group nav-liquid-group hidden">
+                    <button class="nav-item active" data-page="marketplace">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+                        <span>Storefront</span>
+                    </button>
+                    <button class="nav-item" data-page="admin-eval">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                        <span>Architecture & Proofs</span>
+                    </button>
+                    <button class="nav-item" data-page="admin-concurrency">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+                        <span>Concurrency Lab</span>
+                    </button>
+                </nav>
+
+                <!-- User Profile & Guest Actions (No switch role) -->
+                <div class="nav-profile-wrap">
+                    <!-- Guest Controls (Visible when not logged in) -->
+                    <div id="guestNavControls" class="guest-nav-controls">
+                        <button class="btn-ghost-outline btn-sm btn-liquid-ghost" id="navArtisanPortalBtn" title="Artisan / Seller Portal Login">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                            <span>Artisan Portal</span>
+                        </button>
+                        <button class="btn-primary-loom btn-sm btn-liquid-glow" id="navSignInBtn">
+                            <span>Sign In</span>
+                        </button>
+                    </div>
+
+                    <!-- Authenticated User Profile (Visible when logged in) -->
+                    <div id="userNavProfile" class="user-profile-group hidden">
+                        <div class="user-pill" id="userPill">
+                            <div class="user-initial" id="userInitial">A</div>
+                            <div class="user-meta">
+                                <span class="user-display-name" id="userDisplayName">Aarav Patel</span>
+                                <span class="user-role-badge" id="userRoleBadge">BUYER</span>
+                            </div>
+                        </div>
+                        <button class="btn-icon-logout" id="logoutBtn" title="Sign Out">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- MAIN CONTENT PAGES -->
+        <!-- ============================================================ -->
+        <main class="main-body">
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 1. BUYER PAGE: MARKETPLACE / SHOP -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-marketplace" class="page-view active">
+                <div class="container">
+                    <!-- Hero Section with Sculptural Ribbon Art -->
+                    <div class="hero-banner">
+                        <div class="hero-content">
+                            <div class="hero-eyebrow">
+                                <span class="dot-gold"></span>
+                                <span>GUJARAT & PAN-INDIA ARTISAN CLUSTERS</span>
+                            </div>
+                            <h1 class="hero-title">Handcrafted Treasures,<br/>Straight from Artisan Looms</h1>
+                            <p class="hero-subtitle">
+                                Authenticated Jamnagar Bandhani, Patan Double-Ikat Patola, Ajrakh natural block prints & Gundiyali terracotta. Artisans keep 90–92% of every rupee.
+                            </p>
+
+                            <!-- Modern Search Bar -->
+                            <div class="search-widget">
+                                <div class="search-field">
+                                    <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    <input type="text" id="searchInput" placeholder="Search Bandhani sarees, Patola dupattas, Ajrakh, Terracotta..." />
+                                </div>
+                                <select id="categoryFilter" class="select-field">
+                                    <option value="">All Categories</option>
+                                </select>
+                                <label class="toggle-pill">
+                                    <input type="checkbox" id="giOnlyFilter" />
+                                    <span class="t-knob"></span>
+                                    <span class="t-text">GI Tag Only</span>
+                                </label>
+                                <button class="btn-search-gold" id="searchSubmitBtn">Search</button>
+                            </div>
+
+                            <div class="hero-metrics-strip">
+                                <div class="m-item">
+                                    <strong>₹72,000+</strong>
+                                    <span>Direct karigar earnings</span>
+                                </div>
+                                <div class="m-divider"></div>
+                                <div class="m-item">
+                                    <strong>100%</strong>
+                                    <span>Verified GI clusters</span>
+                                </div>
+                                <div class="m-divider"></div>
+                                <div class="m-item">
+                                    <strong>Zero</strong>
+                                    <span>Middleman exploitation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-art-side">
+                            <div class="sculpture-card">
+                                <img src="/images/weavo-ribbon-hero.svg" alt="Weavo 3D Ribbon Weave" class="hero-vector-sculpture" />
+                                <div class="sculpture-float-tag">
+                                    <span class="tag-live-dot"></span>
+                                    <span>Living Loom Heritage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Chips Strip -->
+                    <div class="category-chips-row" id="categoryChips">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-section">
+                        <div class="section-headline-bar">
+                            <div class="sh-title-box">
+                                <h2 class="sh-title">Artisan Craft Catalog</h2>
+                                <span class="sh-counter" id="productCountLabel">Loading crafts...</span>
+                            </div>
+                            <div class="sh-sort-box">
+                                <span class="sort-label">Sort by:</span>
+                                <select id="sortSelect" class="sort-select">
+                                    <option value="featured">Featured First</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="products-grid-modern" id="productsGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Impact & Community Showcase -->
+                    <div class="impact-showcase-box">
+                        <div class="impact-image-col">
+                            <img src="/images/weavo-ribbon-sculpture.jpg" alt="Weavo Craft Sculpture Art" class="impact-sculpture-thumb" />
+                        </div>
+                        <div class="impact-text-col">
+                            <span class="impact-eyebrow">THE WEAVO ETHOS</span>
+                            <h3>Every thread sustains a generational lineage</h3>
+                            <p>
+                                Traditional craftspeople lose up to 60% of retail margins to middlemen and traders. Weavo was built as a mission-driven fair-trade social enterprise to solve this real-world problem with modern cloud technology, transparent transactions, and 92% direct artisan settlements.
+                            </p>
+                            <div class="impact-stats-row">
+                                <div class="is-stat">
+                                    <strong>92%</strong>
+                                    <span>To the artisan</span>
+                                </div>
+                                <div class="is-stat">
+                                    <strong>8%</strong>
+                                    <span>Platform maintenance</span>
+                                </div>
+                                <div class="is-stat">
+                                    <strong>0%</strong>
+                                    <span>Middleman commission</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 2. BUYER PAGE: CART & CHECKOUT -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-cart" class="page-view">
+                <div class="container">
+                    <div class="page-intro-header">
+                        <div class="pih-title">
+                            <h2>Your Shopping Cart</h2>
+                            <p>Review handcrafted artisan items before placing simulated order</p>
+                        </div>
+                        <button class="btn-ghost-outline" onclick="navigateTo('marketplace')">
+                            ← Continue Shopping
+                        </button>
+                    </div>
+
+                    <div class="cart-split-layout">
+                        <!-- Left: Cart Items List -->
+                        <div class="cart-items-column">
+                            <div class="modern-card" id="cartItemsCard">
+                                <div class="card-header-line">
+                                    <h3>Selected Crafts (<span id="cartHeaderCount">0</span>)</h3>
+                                    <button class="btn-text-danger" id="clearCartBtn">Clear Cart</button>
+                                </div>
+                                <div id="cartItemsContainer" class="cart-items-stack">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="free-shipping-card">
+                                <div class="fsc-icon">📦</div>
+                                <div class="fsc-text">
+                                    <strong>Free Insured Craft Delivery</strong>
+                                    <span>All orders over ₹2,500 receive complimentary direct-from-cluster delivery.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Order Summary & Sandbox Checkout -->
+                        <div class="cart-summary-column">
+                            <div class="modern-card checkout-card-sticky">
+                                <h3>Order Summary</h3>
+                                
+                                <div class="cost-breakdown-box" id="priceBreakdown">
+                                    <!-- Populated by JS -->
+                                </div>
+
+                                <div class="divider-line"></div>
+
+                                <form id="checkoutForm" class="checkout-form-modern">
+                                    <div class="form-group">
+                                        <label for="shippingAddress">Delivery Destination (India)</label>
+                                        <textarea id="shippingAddress" rows="2" class="form-control" required>402 Navrangpura Heights, Near University Ground, Ahmedabad, Gujarat 380009</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="paymentMethodSelect">Test Payment Gateway (Sandbox)</label>
+                                        <select id="paymentMethodSelect" class="form-control">
+                                            <option value="UPI_TEST">UPI Sandbox (aarav@okicici / QR)</option>
+                                            <option value="CARD_TEST">Visa / RuPay Sandbox (4111 ... 1111)</option>
+                                            <option value="WALLET_TEST">Artisan Pay Direct Wallet</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="paymentTokenInput">Simulated VPA / Token</label>
+                                        <input type="text" id="paymentTokenInput" class="form-control" value="aarav.patel@okicici" required />
+                                    </div>
+
+                                    <div class="academic-switches">
+                                        <label class="switch-row">
+                                            <input type="checkbox" id="simulateFailureToggle" />
+                                            <span class="switch-box"></span>
+                                            <span class="switch-text">Simulate <code>PaymentFailedException</code></span>
+                                        </label>
+
+                                        <label class="switch-row highlight-legal">
+                                            <input type="checkbox" id="dpdpConsentToggle" checked required />
+                                            <span class="switch-box"></span>
+                                            <span class="switch-text">I consent under <strong>DPDP Act 2023</strong> to process shipping details for craft fulfillment.</span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Animated Checkout Progress Indicator -->
+                                    <div id="checkoutProgress" class="checkout-progress-bar hidden">
+                                        <div class="prog-step" id="step1"><span>1. Stock Check</span></div>
+                                        <div class="prog-step" id="step2"><span>2. Concurrency Lock</span></div>
+                                        <div class="prog-step" id="step3"><span>3. Gateway</span></div>
+                                        <div class="prog-step" id="step4"><span>4. Invoice</span></div>
+                                    </div>
+
+                                    <button type="submit" class="btn-primary-loom btn-block" id="placeOrderBtn">
+                                        <span>Confirm Simulated Order</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </button>
+                                </form>
+
+                                <div id="checkoutBanner" class="result-banner-box"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 3. BUYER PAGE: ORDERS & INVOICE RECEIPTS -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-orders" class="page-view">
+                <div class="container">
+                    <div class="page-intro-header">
+                        <div>
+                            <h2>My Order History</h2>
+                            <p>Track fulfillment status, view Java file receipts, and post verified reviews</p>
+                        </div>
+                        <button class="btn-secondary-loom" id="refreshOrdersBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                            <span>Refresh Orders</span>
+                        </button>
+                    </div>
+
+                    <div id="ordersContainer" class="orders-timeline-stack">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 4. BUYER PAGE: GI HERITAGE STORY -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-heritage" class="page-view">
+                <div class="container">
+                    <div class="heritage-hero-banner">
+                        <div class="hh-text">
+                            <span class="hh-badge">GEOGRAPHICAL INDICATION DIRECTORY</span>
+                            <h2>Gujarat’s Certified Craft Lineages</h2>
+                            <p>Every craft cluster represented on Weavo is legally protected under India’s GI of Goods Act 1999.</p>
+                        </div>
+                        <div class="hh-art">
+                            <img src="/images/weavo-ribbon-order.svg" alt="Craft Emblem" class="hh-emblem" />
+                        </div>
+                    </div>
+
+                    <div class="heritage-clusters-grid">
+                        <div class="cluster-card">
+                            <div class="cc-tag">GI-GJ-BANDHANI-2019</div>
+                            <h3>Jamnagar Bandhani</h3>
+                            <p class="cc-loc">📍 Jamnagar & Saurashtra, Gujarat</p>
+                            <p class="cc-desc">Dating back over 5,000 years to the Indus Valley civilization. Karigars tie thousands of intricate knots using pure Gajji silk and natural resist-dyes.</p>
+                            <div class="cc-badge-row"><span class="badge-pill">Tie-Dye Silk</span><span class="badge-pill">Ekdali / Shikargah</span></div>
+                        </div>
+
+                        <div class="cluster-card">
+                            <div class="cc-tag">GI-GJ-PATOLA-2013</div>
+                            <h3>Patan Double Ikat Patola</h3>
+                            <p class="cc-loc">📍 Patan, North Gujarat</p>
+                            <p class="cc-desc">Master Salvi weavers calculate geometric warp and weft alignment so precisely that both sides of the fabric are identical in color and design. Takes 6 months per piece.</p>
+                            <div class="cc-badge-row"><span class="badge-pill">Double Ikat</span><span class="badge-pill">Natural Pigments</span></div>
+                        </div>
+
+                        <div class="cluster-card">
+                            <div class="cc-tag">GI-GJ-AJRAKH-2024</div>
+                            <h3>Dhamadka & Ajrakhpur Block Print</h3>
+                            <p class="cc-loc">📍 Kutch, Gujarat</p>
+                            <p class="cc-desc">A 16-stage hand block printing technique utilizing hand-carved teak wood blocks, natural indigo, madder root, harda, and river water.</p>
+                            <div class="cc-badge-row"><span class="badge-pill">Natural Indigo</span><span class="badge-pill">Teak Block</span></div>
+                        </div>
+
+                        <div class="cluster-card">
+                            <div class="cc-tag">GI-GJ-SANKHEDA-2007</div>
+                            <h3>Sankheda Lacquerware</h3>
+                            <p class="cc-loc">📍 Sankheda, Chhota Udaipur</p>
+                            <p class="cc-desc">Turned teak wood furniture coated with tin foil and natural tree resin lacquer, producing characteristic radiant golden motifs.</p>
+                            <div class="cc-badge-row"><span class="badge-pill">Turned Teak</span><span class="badge-pill">Tin Lacquer</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 5. SELLER PAGE: ARTISAN DASHBOARD -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-seller-dashboard" class="page-view">
+                <div class="container">
+                    <!-- Seller Hero Banner -->
+                    <div class="seller-banner-card">
+                        <div class="sb-info">
+                            <div class="sb-tag-row">
+                                <span class="badge-tag live-dot">ARTISAN MERCHANT PORTAL</span>
+                                <span class="badge-tag">GI-GJ-BANDHANI-2019</span>
+                            </div>
+                            <h2 id="artisanWorkshopTitle">Khatri Bandhani & Ajrakh Kala Kendra</h2>
+                            <p class="sb-meta">Master Artisan: <strong>Rameshbhai Khatri</strong> · Jamnagar Cluster, Gujarat</p>
+                            <div class="sb-stats-quick">
+                                <div class="sb-quick-item">
+                                    <span>Artisan Share</span>
+                                    <strong>92.0% (Direct)</strong>
+                                </div>
+                                <div class="sb-quick-item">
+                                    <span>KYC Status</span>
+                                    <strong class="text-success">VERIFIED ✓</strong>
+                                </div>
+                                <div class="sb-quick-item">
+                                    <span>Loom Tier</span>
+                                    <strong>KARIGAR PRO</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sb-art">
+                            <img src="/images/weavo-ribbon-seller.svg" alt="Artisan Studio Ribbon Art" class="seller-vector-img" />
+                        </div>
+                    </div>
+
+                    <!-- 4 Live Key Performance Indicators -->
+                    <div class="kpi-grid-modern">
+                        <div class="kpi-card">
+                            <div class="kpi-icon bg-gold">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-value" id="kpiActiveListings">6</span>
+                                <span class="kpi-label">Active Craft Listings</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon bg-terra">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-value" id="kpiTotalRevenue">₹78,400</span>
+                                <span class="kpi-label">Gross Marketplace Sales</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon bg-success">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-value" id="kpiArtisanPayout">₹72,128</span>
+                                <span class="kpi-label">Artisan Direct Payout (92%)</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon bg-navy">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-value" id="kpiOrdersReceived">14</span>
+                                <span class="kpi-label">Orders Fulfilled</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Row -->
+                    <div class="quick-action-strip">
+                        <button class="qa-btn primary" onclick="navigateTo('seller-add')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            <span>Add New Craft Listing</span>
+                        </button>
+                        <button class="qa-btn" onclick="navigateTo('seller-manage')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                            <span>Customize Product Prices & Stock</span>
+                        </button>
+                        <button class="qa-btn" id="exportCsvSellerBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Export Catalog CSV</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 6. SELLER PAGE: MANAGE & CUSTOMIZE PRODUCTS -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-seller-manage" class="page-view">
+                <div class="container">
+                    <div class="page-intro-header">
+                        <div>
+                            <h2>Manage & Customize Products</h2>
+                            <p>Artisan Price Customizer, Stock Inventory & Listing Status Controls</p>
+                        </div>
+                        <button class="btn-primary-loom" onclick="navigateTo('seller-add')">
+                            + Add New Product
+                        </button>
+                    </div>
+
+                    <div class="modern-card">
+                        <div class="table-responsive">
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Craft Details</th>
+                                        <th>Origin & Cluster</th>
+                                        <th>Price (₹) — Customizer</th>
+                                        <th>Stock Units</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sellerManageTableBody">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CSV Code Preview Box -->
+                    <div class="modern-card mt-24">
+                        <div class="card-header-line">
+                            <div>
+                                <h3>Java <code>BufferedWriter</code> CSV Catalog Export</h3>
+                                <p class="card-subtitle">Direct export of live catalog records formatted according to syllabus file I/O</p>
+                            </div>
+                            <button class="btn-secondary-loom btn-sm" id="generateCsvPreviewBtn">Generate Live CSV</button>
+                        </div>
+                        <pre id="csvPreviewBox" class="code-preview-terminal">Click "Generate Live CSV" to preview catalog file stream...</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 7. SELLER PAGE: ADD NEW CRAFT -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-seller-add" class="page-view">
+                <div class="container narrow-container">
+                    <div class="page-intro-header">
+                        <div>
+                            <h2>Publish New Handcrafted Listing</h2>
+                            <p>List your village cluster craft directly on Weavo Marketplace</p>
+                        </div>
+                        <button class="btn-ghost-outline" onclick="navigateTo('seller-manage')">
+                            ← Back to Listings
+                        </button>
+                    </div>
+
+                    <div class="modern-card">
+                        <form id="addProductForm" class="artisan-form-grid">
+                            <div class="form-group full-width">
+                                <label for="pTitle">Craft Title</label>
+                                <input type="text" id="pTitle" class="form-control" placeholder="e.g., Bhujodi Handwoven Kala Cotton Stole" required />
+                            </div>
+
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="pCategory">Craft Category</label>
+                                    <select id="pCategory" class="form-control" required></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pCraftType">Weaving / Craft Specialty</label>
+                                    <input type="text" id="pCraftType" class="form-control" value="Pit Loom Weaving" required />
+                                </div>
+                            </div>
+
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="pOriginVillage">Origin Village & Cluster</label>
+                                    <input type="text" id="pOriginVillage" class="form-control" value="Bhujodi, Kutch, Gujarat" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="pPresetImage">Select Product Imagery</label>
+                                    <select id="pPresetImage" class="form-control">
+                                        <option value="/images/weavo-ribbon-hero.svg">Weavo Artisan Signature Weave</option>
+                                        <option value="/images/bandhani-saree.png">Jamnagar Gajji Silk Bandhani</option>
+                                        <option value="/images/patola-dupatta.png">Patan Double-Ikat Patola</option>
+                                        <option value="/images/ajrakh-stole.png">Dhamadka Indigo Ajrakh</option>
+                                        <option value="/images/terracotta-surahi.png">Gundiyali Terracotta Surahi</option>
+                                        <option value="/images/kutchi-cushions.png">Kutchi Mirror Embroidery</option>
+                                        <option value="/images/sankheda-box.png">Sankheda Teak Lacquer Box</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="pPrice">Listing Price (₹)</label>
+                                    <input type="number" id="pPrice" class="form-control" value="2400" min="100" required />
+                                    <small class="form-hint" id="payoutHint">Artisan receives ₹2,208 (92%)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pStock">Initial Available Stock</label>
+                                    <input type="number" id="pStock" class="form-control" value="10" min="1" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="pDescription">Artisan Story & Craft Process</label>
+                                <textarea id="pDescription" rows="3" class="form-control" required>Handspun organic rain-fed Kala Cotton woven on a traditional pit loom by Ahir weavers using vegetable indigo dyes.</textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="switch-row highlight-legal">
+                                    <input type="checkbox" id="pGiCertified" checked />
+                                    <span class="switch-box"></span>
+                                    <span class="switch-text"><strong>Geographical Indication (GI) Certified Product</strong> — Verified under GI Registry</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn-primary-loom btn-block" id="publishProductBtn">
+                                <span>Publish Craft to Marketplace</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </button>
+                        </form>
+
+                        <div id="publishResultBanner" class="result-banner-box"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 8. ADMIN PAGE: CONCURRENCY LAB -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-admin-concurrency" class="page-view">
+                <div class="container">
+                    <div class="page-intro-header">
+                        <div>
+                            <h2>Multi-Threaded Concurrency Lab</h2>
+                            <p>Verification of <code>ExecutorService</code> + <code>ReentrantLock</code> + Atomic Stock Decrement</p>
+                        </div>
+                        <span class="badge-tag">JAVA SYLLABUS: MULTITHREADING</span>
+                    </div>
+
+                    <div class="cart-split-layout">
+                        <div class="cart-items-column">
+                            <div class="modern-card">
+                                <h3>Parallel Order Spike Simulator</h3>
+                                <p class="card-subtitle">Fires simultaneous buyer threads against the exact same craft inventory to prove zero double-spending.</p>
+                                
+                                <div class="form-group">
+                                    <label for="concProductSelect">Target Craft Product</label>
+                                    <select id="concProductSelect" class="form-control"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="concThreadsInput">Parallel Concurrent Threads (2 to 12)</label>
+                                    <input type="number" id="concThreadsInput" class="form-control" value="6" min="2" max="12" />
+                                </div>
+
+                                <button class="btn-primary-loom" id="runConcurrencySpikeBtn">
+                                    <span>Launch Concurrent Thread Spike</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                </button>
+
+                                <div class="mt-24">
+                                    <label>Execution Trace Output</label>
+                                    <pre id="concurrencyOutputBox" class="code-preview-terminal">Click "Launch Concurrent Thread Spike" to run multi-threaded test...</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart-summary-column">
+                            <div class="modern-card">
+                                <h3>Why Concurrency Matters</h3>
+                                <div class="steps-flow">
+                                    <div class="sf-step">
+                                        <div class="sf-num">1</div>
+                                        <div class="sf-text">
+                                            <strong>Festival Traffic Spike</strong>
+                                            <span>During Diwali or Navratri, hundreds of buyers attempt to purchase the same rare Patola piece at the exact same millisecond.</span>
+                                        </div>
+                                    </div>
+                                    <div class="sf-step">
+                                        <div class="sf-num">2</div>
+                                        <div class="sf-text">
+                                            <strong>ReentrantLock Guard</strong>
+                                            <span>Each product has a synchronized lock. Only 1 thread enters the critical stock decrement block at a time.</span>
+                                        </div>
+                                    </div>
+                                    <div class="sf-step">
+                                        <div class="sf-num">3</div>
+                                        <div class="sf-text">
+                                            <strong>OutOfStockException</strong>
+                                            <span>When stock reaches 0, remaining threads safely throw custom <code>OutOfStockException</code> without corruption.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -------------------------------------------------------- -->
+            <!-- 9. ADMIN PAGE: SYLLABUS COMPLIANCE & CANVA HUB -->
+            <!-- -------------------------------------------------------- -->
+            <section id="page-admin-eval" class="page-view">
+                <div class="container">
+                    <div class="page-intro-header">
+                        <div>
+                            <h2>Weavo Startup Architecture & Verification</h2>
+                            <p>Multi-module cloud enterprise with fair-trade execution and verification</p>
+                        </div>
+                    </div>
+
+                    <!-- 5 Subjects Compliance Matrix -->
+                    <div class="eval-subjects-grid">
+                        <!-- Subject 1 -->
+                        <div class="eval-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">SUBJECT 1</span>
+                                <h3>Startup Policies</h3>
+                            </div>
+                            <p class="ec-desc">Lean Canvas, Business Model Canvas, SWOT, PESTEL, DPIIT registration readiness, and investor pitch deck.</p>
+                            <div class="ec-checklist">
+                                <span>✓ Lean Canvas & BMC formulated</span>
+                                <span>✓ SWOT & PESTEL analysis</span>
+                                <span>✓ DPIIT startup readiness note</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGStartupWeavo/view" target="_blank" class="btn-canva-deck">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>View Canva Pitch Deck</span>
+                            </a>
+                        </div>
+
+                        <!-- Subject 2 -->
+                        <div class="eval-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">SUBJECT 2</span>
+                                <h3>E-Commerce Strategy</h3>
+                            </div>
+                            <p class="ec-desc">Platform user journey (browse → cart → pay → deliver), test payment integration, logistics, and DPDP Act 2023 legal compliance.</p>
+                            <div class="ec-checklist">
+                                <span>✓ 92% Artisan direct revenue model</span>
+                                <span>✓ DPDP Act 2023 consent module</span>
+                                <span>✓ Verified review architecture</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGEcommerceWeavo/view" target="_blank" class="btn-canva-deck">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>View Canva E-Commerce Flow</span>
+                            </a>
+                        </div>
+
+                        <!-- Subject 3 -->
+                        <div class="eval-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">SUBJECT 3</span>
+                                <h3>Java Core & Architecture</h3>
+                            </div>
+                            <p class="ec-desc">OOP hierarchy (User → Customer/Artisan/Admin), Custom Exceptions, Multithreading, File I/O CSV exports, and Spring Boot 3 API.</p>
+                            <div class="ec-checklist">
+                                <span>✓ OOP Inheritance & Interfaces</span>
+                                <span>✓ Custom Exceptions (OutOfStock, etc.)</span>
+                                <span>✓ Concurrency ExecutorService & File I/O</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGJavaWeavo/view" target="_blank" class="btn-canva-deck">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>View Canva Java Architecture</span>
+                            </a>
+                        </div>
+
+                        <!-- Subject 4 -->
+                        <div class="eval-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">SUBJECT 4</span>
+                                <h3>Software Testing</h3>
+                            </div>
+                            <p class="ec-desc">30+ JUnit 5 test cases, JaCoCo statement/branch coverage, integration tests, defect log, regression suite, and k6 load tests.</p>
+                            <div class="ec-checklist">
+                                <span>✓ 30+ Test cases with JUnit 5</span>
+                                <span>✓ JaCoCo coverage reports</span>
+                                <span>✓ k6 festival load testing script</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGTestingWeavo/view" target="_blank" class="btn-canva-deck">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>View Canva Testing Suite</span>
+                            </a>
+                        </div>
+
+                        <!-- Subject 5 -->
+                        <div class="eval-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">SUBJECT 5</span>
+                                <h3>Cloud Computing & DevOps</h3>
+                            </div>
+                            <p class="ec-desc">Multi-stage Dockerfile, Netlify edge deployment, Render web service, Supabase DB & Storage, CI/CD Actions, and user scaling cost model.</p>
+                            <div class="ec-checklist">
+                                <span>✓ Multi-stage Docker container</span>
+                                <span>✓ Netlify + Render deployment</span>
+                                <span>✓ 100 / 1K / 10K Cost model</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGCloudWeavo/view" target="_blank" class="btn-canva-deck">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>View Canva Cloud Architecture</span>
+                            </a>
+                        </div>
+
+                        <!-- Presentation & Viva -->
+                        <div class="eval-card highlight-card">
+                            <div class="ec-header">
+                                <span class="ec-badge">PRESENTATION & VIVA</span>
+                                <h3>Investor Pitch & Defense</h3>
+                            </div>
+                            <p class="ec-desc">12-slide investor pitch deck, 5-minute product walk-through, and examiner viva preparation guide.</p>
+                            <div class="ec-checklist">
+                                <span>✓ 12-Slide Canva investor pitch</span>
+                                <span>✓ Viva question defense bank</span>
+                                <span>✓ 5-Minute video walkthrough script</span>
+                            </div>
+                            <a href="https://www.canva.com/design/DAGPitchWeavo/view" target="_blank" class="btn-canva-deck highlight">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <span>Open Full Canva Pitch Deck</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <!-- Modern Startup Impact Footer -->
+        <footer class="main-footer startup-footer-modern">
+            <!-- 1. Live Startup Impact Metrics Bar -->
+            <div class="footer-metrics-strip">
+                <div class="container footer-metrics-grid">
+                    <div class="f-metric-card">
+                        <div class="fm-icon">🪙</div>
+                        <div class="fm-info">
+                            <span class="fm-value">₹28,45,000+</span>
+                            <span class="fm-label">Direct Karigar Payouts</span>
+                        </div>
+                    </div>
+                    <div class="f-metric-card">
+                        <div class="fm-icon">🪡</div>
+                        <div class="fm-info">
+                            <span class="fm-value">1,420+ Weavers</span>
+                            <span class="fm-label">18 Gujarat Craft Clusters</span>
+                        </div>
+                    </div>
+                    <div class="f-metric-card">
+                        <div class="fm-icon">⚖️</div>
+                        <div class="fm-info">
+                            <span class="fm-value">92% Take-Home</span>
+                            <span class="fm-label">0% Middleman Markups</span>
+                        </div>
+                    </div>
+                    <div class="f-metric-card">
+                        <div class="fm-icon">🏛️</div>
+                        <div class="fm-info">
+                            <span class="fm-value">100% GI Protected</span>
+                            <span class="fm-label">Authentic Village Lineage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Main Footer Body with Startup Interactive Simulator & Story -->
+            <div class="container footer-main-body">
+                <!-- Column 1: Brand & Startup Manifesto -->
+                <div class="f-col-brand">
+                    <div class="footer-logo">
+                        <span class="f-dot f1"></span>
+                        <span class="f-dot f2"></span>
+                        <span class="f-dot f3"></span>
+                        <strong>WEAVO</strong>
+                    </div>
+                    <p class="f-tag">From the loom to your living room.</p>
+                    <p class="f-manifesto">
+                        Weavo is India's next-generation artisan-first social enterprise. By deploying decentralized transparency and fair-trade settlements, we bypass multi-tiered trader cartels so Gujarat's master craftspeople earn 92% of true retail value while patrons enjoy certified heirloom treasures.
+                    </p>
+                    <div class="f-badges-row">
+                        <span class="f-badge-pill" title="DPIIT Registered Social Startup">🏛️ DPIIT Recognized</span>
+                        <span class="f-badge-pill" title="Craftmark Authenticated">✨ Craftmark Certified</span>
+                        <span class="f-badge-pill" title="DPDP Act 2023 Compliant">🛡️ DPDP 2023 Privacy</span>
+                        <span class="f-badge-pill" title="Natural Dyes Only">🌿 Zero Chemical Dyes</span>
+                    </div>
+                </div>
+
+                <!-- Column 2: Interactive "Karigar Impact Simulator" -->
+                <div class="f-col-simulator">
+                    <div class="simulator-card">
+                        <div class="sim-header">
+                            <span class="sim-sparkle">💡 Live Fair-Trade Simulator</span>
+                            <h4>Calculate Karigar Payout</h4>
+                            <p class="sim-sub">Select a craft to see where your money really goes:</p>
+                        </div>
+                        <div class="sim-selectors" id="simSelectors">
+                            <button type="button" class="sim-chip active" data-craft="bandhani" data-price="4850" data-village="Jamnagar" data-artisan="Rameshbhai Khatri" data-impact="Funds 12 days of natural madder dye & wages for 2 family looms in Jamnagar.">
+                                Bandhani Saree (₹4,850)
+                            </button>
+                            <button type="button" class="sim-chip" data-craft="patola" data-price="8200" data-village="Patan" data-artisan="Kevalbhai Salvi" data-impact="Preserves 8-ply pure mulberry silk weaving & 11th-century double-ikkat technique in Patan.">
+                                Patola Silk (₹8,200)
+                            </button>
+                            <button type="button" class="sim-chip" data-craft="ajrakh" data-price="1850" data-village="Dhamadka" data-artisan="Ismailbhai Khatri" data-impact="Supports 16 manual resist block-printing steps with organic indigo in Dhamadka, Kutch.">
+                                Ajrakh Stole (₹1,850)
+                            </button>
+                            <button type="button" class="sim-chip" data-craft="terracotta" data-price="950" data-village="Gundiyali" data-artisan="Maganbhai Prajapati" data-impact="Revives ancient Indus Valley clay shaping and wood-fired kiln firing in Gundiyali.">
+                                Terracotta Vase (₹950)
+                            </button>
+                        </div>
+
+                        <div class="sim-display-box" id="simDisplayBox">
+                            <div class="sim-row">
+                                <span class="sim-lbl">Direct Karigar Jan Dhan Payout (92%):</span>
+                                <strong class="sim-val highlight" id="simArtisanPayout">₹4,462</strong>
+                            </div>
+                            <div class="sim-row">
+                                <span class="sim-lbl">Weavo Logistics, Cloud & Packaging (8%):</span>
+                                <span class="sim-val" id="simPlatformFee">₹388</span>
+                            </div>
+                            <div class="sim-row sim-row-strike">
+                                <span class="sim-lbl">Traditional Middleman Trader Markup:</span>
+                                <span class="sim-val strike">₹0 (Trader cuts: ₹2,600+)</span>
+                            </div>
+                            <div class="sim-impact-text" id="simImpactDesc">
+                                🌟 <strong>Cluster Impact:</strong> Funds 12 days of natural madder dye & wages for 2 family looms in Jamnagar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Karigar Clusters & Newsletter -->
+                <div class="f-col-subscribe">
+                    <h4>Artisan Craft Clusters</h4>
+                    <p class="f-sub-text">Directly sourcing authentic heritage from registered weaver communities:</p>
+                    <div class="f-clusters-wrap">
+                        <span class="cluster-tag" onclick="filterByCluster('Jamnagar')">📍 Jamnagar (Bandhani)</span>
+                        <span class="cluster-tag" onclick="filterByCluster('Patan')">📍 Patan (Patola)</span>
+                        <span class="cluster-tag" onclick="filterByCluster('Dhamadka')">📍 Dhamadka (Ajrakh)</span>
+                        <span class="cluster-tag" onclick="filterByCluster('Gundiyali')">📍 Gundiyali (Clay)</span>
+                        <span class="cluster-tag" onclick="filterByCluster('Sankheda')">📍 Sankheda (Wood)</span>
+                    </div>
+
+                    <div class="f-newsletter-card">
+                        <h5>Join the Artisan Circle</h5>
+                        <p>Receive exclusive private loom release drops and master-artisan stories.</p>
+                        <form id="footerNewsletterForm" class="f-news-form" onsubmit="handleNewsletterSubmit(event)">
+                            <div class="news-input-wrap">
+                                <input type="email" id="newsEmailInput" placeholder="Enter your email" required />
+                                <button type="submit" class="btn-primary-loom btn-sm">Subscribe</button>
+                            </div>
+                            <div id="newsletterSuccessMsg" class="news-success hidden">✓ Welcome to the Weavo Artisan Circle!</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Bottom Legal & Fair Trade Bar -->
+            <div class="footer-bottom-bar">
+                <div class="container fb-inner">
+                    <div class="fb-left">
+                        <span>© 2026 Weavo Technologies Pvt. Ltd. · Handcrafted with pride in Gujarat, India.</span>
+                    </div>
+                    <div class="fb-right">
+                        <span>Fair Trade Verified</span>
+                        <span class="fb-sep">·</span>
+                        <span>Zero Intermediaries</span>
+                        <span class="fb-sep">·</span>
+                        <span>Protected by DPDP Act 2023</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODALS & DIALOGS -->
+    <!-- ============================================================ -->
+
+    <!-- Product Quick View Modal -->
+    <div id="productQuickModal" class="modal-backdrop hidden">
+        <div class="modal-card modal-large">
+            <button class="modal-close-btn" onclick="closeQuickModal()">&times;</button>
+            <div class="quick-modal-content" id="quickModalContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Price / Stock Customizer Modal for Artisan -->
+    <div id="customizeProductModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeCustomizeModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Artisan Product Customizer</h3>
+                <p>Modify listing price, stock, and marketplace availability</p>
+            </div>
+            <form id="customizeProductForm" class="customize-form">
+                <input type="hidden" id="custProductId" />
+                <div class="form-group">
+                    <label>Craft Title</label>
+                    <input type="text" id="custTitle" class="form-control" required />
+                </div>
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" id="custPrice" class="form-control" min="50" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Available Stock</label>
+                        <input type="number" id="custStock" class="form-control" min="0" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="switch-row">
+                        <input type="checkbox" id="custActive" checked />
+                        <span class="switch-box"></span>
+                        <span class="switch-text">Listing is Active on Marketplace</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary-loom btn-block">Save Customization</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Canva Hub Modal -->
+    <div id="canvaHubModal" class="modal-backdrop hidden">
+        <div class="modal-card modal-large">
+            <button class="modal-close-btn" onclick="closeCanvaModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Canva Project Presentation Hub</h3>
+                <p>All 7 Integrated Project deliverables hosted on Canva</p>
+            </div>
+            <div class="canva-hub-grid">
+                <a href="https://www.canva.com/design/DAGProposalWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">📋</div>
+                    <div class="ci-text">
+                        <strong>00. Project Proposal & Overview</strong>
+                        <span>Problem statement, craft clusters & mentor approval</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGStartupWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">📜</div>
+                    <div class="ci-text">
+                        <strong>01. Startup Policies (BMC & SWOT)</strong>
+                        <span>Lean Canvas, SWOT, PESTEL, DPIIT readiness</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGEcommerceWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">🛒</div>
+                    <div class="ci-text">
+                        <strong>02. E-Commerce Strategy & Flow</strong>
+                        <span>User journey, 92% revenue model, DPDP 2023 legal checklist</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGTestingWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">🧪</div>
+                    <div class="ci-text">
+                        <strong>03. Software Testing Suite</strong>
+                        <span>30+ Test cases, JUnit 5, JaCoCo coverage, defect log</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGCloudWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">☁️</div>
+                    <div class="ci-text">
+                        <strong>04. Cloud Computing & Cost Model</strong>
+                        <span>Docker, Netlify, Render, scaling cost at 100/1K/10K users</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGJavaWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">☕</div>
+                    <div class="ci-text">
+                        <strong>05. Java Module Architecture</strong>
+                        <span>OOP inheritance, exceptions, multithreading, file I/O</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+
+                <a href="https://www.canva.com/design/DAGPitchWeavo/view" target="_blank" class="canva-item">
+                    <div class="ci-ico">🎤</div>
+                    <div class="ci-text">
+                        <strong>06. Investor Pitch Deck & Viva Prep</strong>
+                        <span>12-Slide deck, 5-min walk-through & viva defense bank</span>
+                    </div>
+                    <span class="ci-ext">Open Canva ↗</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Receipt Viewer Modal -->
+    <div id="receiptModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeReceiptModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Official Tax Invoice Receipt</h3>
+                <p>Generated via Java <code>BufferedWriter</code> / Backend Receipt Stream</p>
+            </div>
+            <pre id="receiptTextPre" class="receipt-terminal"></pre>
+            <div class="receipt-modal-actions">
+                <button class="btn-primary-loom btn-sm" onclick="printReceipt()">Print / Save PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

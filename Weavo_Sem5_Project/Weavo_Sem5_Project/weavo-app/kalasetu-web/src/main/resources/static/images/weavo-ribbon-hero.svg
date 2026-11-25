@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Background Radial Glow -->
+    <radialGradient id="navyGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#2a275e" />
+      <stop offset="60%" stop-color="#1b1a42" />
+      <stop offset="100%" stop-color="#131230" />
+    </radialGradient>
+
+    <!-- Warm Ochre Gold Gradients -->
+    <linearGradient id="goldFront" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD36E" />
+      <stop offset="40%" stop-color="#F2B544" />
+      <stop offset="80%" stop-color="#D99726" />
+      <stop offset="100%" stop-color="#A86E12" />
+    </linearGradient>
+    <linearGradient id="goldBack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C2841A" />
+      <stop offset="100%" stop-color="#7A4E08" />
+    </linearGradient>
+
+    <!-- Linen Cream Gradients -->
+    <linearGradient id="creamFront" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="30%" stop-color="#F6F5F1" />
+      <stop offset="75%" stop-color="#E2DFD2" />
+      <stop offset="100%" stop-color="#BFBCAC" />
+    </linearGradient>
+    <linearGradient id="creamBack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4D1C2" />
+      <stop offset="100%" stop-color="#8E8B7C" />
+    </linearGradient>
+
+    <!-- Terracotta Cinnamon Gradients -->
+    <linearGradient id="terraFront" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E87D3E" />
+      <stop offset="40%" stop-color="#C65D21" />
+      <stop offset="85%" stop-color="#9C4110" />
+      <stop offset="100%" stop-color="#6E2B08" />
+    </linearGradient>
+    <linearGradient id="terraBack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A34612" />
+      <stop offset="100%" stop-color="#541F05" />
+    </linearGradient>
+
+    <!-- Ribbon Soft Drop Shadow Filter -->
+    <filter id="ribbonShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#0a091a" flood-opacity="0.65" />
+    </filter>
+    <filter id="interlockShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="4" dy="10" stdDeviation="8" flood-color="#080714" flood-opacity="0.55" />
+    </filter>
+
+    <!-- Subtle Textile Weave Texture Pattern -->
+    <pattern id="weavePattern" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3 L6 3 M3 0 L3 6" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <rect width="600" height="600" rx="32" fill="url(#navyGlow)" />
+
+  <!-- Background decorative loom threads -->
+  <g opacity="0.12" stroke="#F2B544" stroke-width="1.2">
+    <line x1="80" y1="40" x2="80" y2="560" stroke-dasharray="4 8" />
+    <line x1="160" y1="40" x2="160" y2="560" stroke-dasharray="4 8" />
+    <line x1="240" y1="40" x2="240" y2="560" stroke-dasharray="4 8" />
+    <line x1="320" y1="40" x2="320" y2="560" stroke-dasharray="4 8" />
+    <line x1="400" y1="40" x2="400" y2="560" stroke-dasharray="4 8" />
+    <line x1="480" y1="40" x2="480" y2="560" stroke-dasharray="4 8" />
+    <line x1="520" y1="40" x2="520" y2="560" stroke-dasharray="4 8" />
+  </g>
+
+  <!-- Ground Shadows under the 3 Ribbon bases -->
+  <ellipse cx="140" cy="510" rx="70" ry="18" fill="#0c0b1e" opacity="0.7" />
+  <ellipse cx="300" cy="530" rx="75" ry="18" fill="#0c0b1e" opacity="0.6" />
+  <ellipse cx="460" cy="505" rx="70" ry="18" fill="#0c0b1e" opacity="0.7" />
+
+  <!-- ============================================== -->
+  <!-- 3D INTERTWINED RIBBON SCULPTURE -->
+  <!-- ============================================== -->
+  <g id="ribbonSculpture" filter="url(#ribbonShadow)">
+
+    <!-- LAYER 1: BACK LOOPS (Behind other ribbons) -->
+    <!-- Cream Ribbon Back Arc -->
+    <path d="M 280 180 C 260 120 310 80 350 90 C 390 100 400 160 380 230"
+          fill="none" stroke="url(#creamBack)" stroke-width="48" stroke-linecap="round" />
+
+    <!-- Ochre Gold Back Arc -->
+    <path d="M 230 220 C 210 130 270 70 330 80 C 370 90 380 140 360 200"
+          fill="none" stroke="url(#goldBack)" stroke-width="50" stroke-linecap="round" />
+
+    <!-- Terracotta Back Curve -->
+    <path d="M 390 210 C 420 280 430 360 470 450 C 485 485 520 495 530 495"
+          fill="none" stroke="url(#terraBack)" stroke-width="46" stroke-linecap="round" />
+
+    <!-- LAYER 2: MID-INTERLOCKING STRANDS -->
+    <!-- Cream Ribbon Main Flow (Center Strand) -->
+    <path d="M 300 520 C 285 520 270 480 280 410 C 290 340 330 270 320 200 C 310 130 250 140 230 210 C 210 280 250 350 285 410"
+          fill="none" stroke="url(#creamFront)" stroke-width="48" stroke-linecap="round"
+          filter="url(#interlockShadow)" />
+
+    <!-- Overlay texture on cream strand -->
+    <path d="M 300 520 C 285 520 270 480 280 410 C 290 340 330 270 320 200 C 310 130 250 140 230 210 C 210 280 250 350 285 410"
+          fill="none" stroke="url(#weavePattern)" stroke-width="48" stroke-linecap="round" opacity="0.4" />
+
+    <!-- Terracotta Ribbon Main Flow (Right Strand) -->
+    <path d="M 340 130 C 370 170 390 230 380 300 C 370 370 410 440 460 485 C 480 500 515 500 530 490"
+          fill="none" stroke="url(#terraFront)" stroke-width="46" stroke-linecap="round"
+          filter="url(#interlockShadow)" />
+
+    <!-- Overlay texture on terracotta strand -->
+    <path d="M 340 130 C 370 170 390 230 380 300 C 370 370 410 440 460 485 C 480 500 515 500 530 490"
+          fill="none" stroke="url(#weavePattern)" stroke-width="46" stroke-linecap="round" opacity="0.35" />
+
+    <!-- LAYER 3: FOREGROUND STRANDS (Weaving in front) -->
+    <!-- Ochre Gold Ribbon Main Flow (Left Strand, intertwining over the top apex) -->
+    <path d="M 80 500 C 110 500 135 480 155 430 C 185 350 200 300 240 240 C 280 180 330 130 320 85 C 310 45 260 55 240 100 C 210 170 170 280 145 360 C 125 430 105 485 75 495"
+          fill="none" stroke="url(#goldFront)" stroke-width="50" stroke-linecap="round"
+          filter="url(#interlockShadow)" />
+
+    <!-- Overlay texture on gold strand -->
+    <path d="M 80 500 C 110 500 135 480 155 430 C 185 350 200 300 240 240 C 280 180 330 130 320 85 C 310 45 260 55 240 100 C 210 170 170 280 145 360 C 125 430 105 485 75 495"
+          fill="none" stroke="url(#weavePattern)" stroke-width="50" stroke-linecap="round" opacity="0.35" />
+
+    <!-- Apex Weave Highlight Accent (Where threads cross like in reference photo) -->
+    <path d="M 280 120 C 300 100 325 105 340 135"
+          fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.35" />
+
+    <path d="M 215 220 C 235 240 260 260 280 275"
+          fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.25" />
+  </g>
+
+  <!-- Floating golden craft embers / fiber dust -->
+  <circle cx="110" cy="180" r="3" fill="#F2B544" opacity="0.6" />
+  <circle cx="480" cy="160" r="2.5" fill="#FCD36E" opacity="0.7" />
+  <circle cx="500" cy="340" r="3.5" fill="#E87D3E" opacity="0.5" />
+  <circle cx="170" cy="480" r="2" fill="#F6F5F1" opacity="0.7" />
+  <circle cx="420" cy="470" r="2.5" fill="#F2B544" opacity="0.6" />
+</svg>

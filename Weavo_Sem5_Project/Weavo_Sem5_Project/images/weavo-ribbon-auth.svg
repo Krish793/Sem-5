@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="authGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#24214f" />
+      <stop offset="55%" stop-color="#171638" />
+      <stop offset="100%" stop-color="#0f0e24" />
+    </radialGradient>
+
+    <linearGradient id="auGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E59E27" />
+      <stop offset="50%" stop-color="#F2B544" />
+      <stop offset="100%" stop-color="#FFE49E" />
+    </linearGradient>
+
+    <linearGradient id="auCream" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#F6F5F1" />
+      <stop offset="100%" stop-color="#C7C4B5" />
+    </linearGradient>
+
+    <linearGradient id="auTerra" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F08A4B" />
+      <stop offset="50%" stop-color="#C65D21" />
+      <stop offset="100%" stop-color="#80330A" />
+    </linearGradient>
+
+    <filter id="authShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#060512" flood-opacity="0.75" />
+    </filter>
+  </defs>
+
+  <rect width="700" height="700" fill="url(#authGlow)" />
+
+  <!-- Subtle sacred geometry craft mandala circles in background -->
+  <g opacity="0.08" stroke="#F2B544" stroke-width="1" fill="none">
+    <circle cx="350" cy="350" r="100" />
+    <circle cx="350" cy="350" r="180" stroke-dasharray="6 6"/>
+    <circle cx="350" cy="350" r="260" />
+    <circle cx="350" cy="350" r="320" stroke-dasharray="4 8"/>
+  </g>
+
+  <!-- Flowing Triple Ribbon Sculpture (Weaving around center) -->
+  <g filter="url(#authShadow)">
+    <!-- Terracotta Strand (Looping behind and sweeping out) -->
+    <path d="M 490 640 C 490 550 520 460 480 370 C 440 280 370 240 330 170 C 290 100 320 40 370 40 C 420 40 450 90 440 160 C 430 230 490 320 520 420 C 550 520 540 600 520 640 Z"
+          fill="url(#auTerra)" opacity="0.95" />
+
+    <!-- Cream Strand (Intertwining across center) -->
+    <path d="M 350 660 C 330 570 320 480 350 390 C 380 300 440 240 420 160 C 400 80 340 70 290 100 C 240 130 220 200 240 280 C 260 360 230 460 190 550 C 170 595 160 630 180 650 Z"
+          fill="url(#auCream)" opacity="0.95" />
+
+    <!-- Ochre Gold Strand (Grand foreground arch) -->
+    <path d="M 180 640 C 180 520 220 420 270 320 C 320 220 350 140 320 80 C 290 20 210 40 190 110 C 170 180 190 260 160 350 C 130 440 80 530 80 620 C 80 650 120 660 180 640 Z"
+          fill="url(#auGold)" />
+
+    <!-- High-gloss thread highlight -->
+    <path d="M 310 95 C 335 125 340 160 310 210"
+          fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.45" />
+    <path d="M 260 335 C 295 385 300 430 280 480"
+          fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.3" />
+  </g>
+
+  <!-- Delicate Gold dust particles -->
+  <circle cx="210" cy="190" r="4" fill="#FCD36E" opacity="0.7"/>
+  <circle cx="480" cy="220" r="3.5" fill="#F2B544" opacity="0.6"/>
+  <circle cx="530" cy="460" r="3" fill="#E87D3E" opacity="0.5"/>
+  <circle cx="140" cy="420" r="3" fill="#F6F5F1" opacity="0.8"/>
+  <circle cx="360" cy="540" r="2.5" fill="#FCD36E" opacity="0.65"/>
+</svg>

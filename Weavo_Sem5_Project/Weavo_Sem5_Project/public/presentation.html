@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weavo — JG University Final Presentation (Sem 5 Integrated Project)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --jg-red: #B82420;
+            --teal: #0E5C5B;
+            --teal-light: #1B8280;
+            --navy: #171638;
+            --gold: #F2B544;
+            --terracotta: #C65D21;
+            --bg-body: #0d0c1d;
+            --slide-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --card-alt: #F4F7F5;
+            --card-border: #E5E3DC;
+            --text-dark: #171638;
+            --text-muted: #64748B;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-body);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Top Action Bar */
+        .top-deck-bar {
+            width: 100%;
+            max-width: 1140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            padding: 0 4px;
+        }
+        .td-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .td-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-ctrl {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-ctrl:hover {
+            background: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+        .btn-canva {
+            background: #7D2AE8;
+            border-color: #7D2AE8;
+            color: #fff;
+        }
+        .btn-canva:hover {
+            background: #9047f5;
+            color: #fff;
+        }
+
+        /* 16:9 Slide Screen */
+        .slide-stage {
+            width: 100%;
+            max-width: 1140px;
+            aspect-ratio: 16 / 9;
+            background: var(--slide-bg);
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 40px 56px;
+            flex-direction: column;
+            justify-content: flex-start;
+            animation: slideIn 0.25s ease-out;
+            overflow-y: auto;
+        }
+        .slide.active { display: flex; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Slide Headers */
+        .slide-num {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--teal);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        .slide-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--teal);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        /* Mandatory Cover Slide */
+        .cover-slide {
+            padding: 30px 56px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .univ-header {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .univ-logo-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--jg-red);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .univ-subtitle {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+        .univ-trust {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .cover-project-box {
+            margin-bottom: 16px;
+        }
+        .cover-project-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--teal);
+            line-height: 1.1;
+        }
+        .cover-project-sub {
+            font-size: 16px;
+            color: var(--teal-light);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .cover-middle-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .sub-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding-top: 6px;
+        }
+        .cover-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .cover-table th {
+            background: var(--teal);
+            color: #fff;
+            text-align: left;
+            padding: 7px 12px;
+            font-weight: 700;
+        }
+        .cover-table td {
+            padding: 6px 12px;
+            border-bottom: 1px solid #d4deda;
+            color: var(--navy);
+        }
+        .cover-table tr:nth-child(even) { background: #EAF2EE; }
+        .cover-table tr:nth-child(odd) { background: #F4F7F5; }
+
+        .submitted-to-box {
+            margin-top: auto;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+            font-size: 13px;
+        }
+        .submitted-to-box strong { color: var(--text-dark); }
+        .prof-list {
+            display: flex;
+            gap: 24px;
+            margin-top: 4px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* Grid Content Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            height: 100%;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            height: 100%;
+        }
+        .grid-team {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            height: 100%;
+        }
+
+        .card-box {
+            background: #fff;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .card-box.alt { background: var(--card-alt); }
+        .card-box h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .card-box p, .card-box li {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .card-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .card-box li::before {
+            content: "• ";
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        /* Bottom Pager Bar */
+        .deck-footer {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: #8886a0;
+        }
+        .nav-arrow {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-arrow:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-deck-bar">
+        <div class="td-brand">
+            <span>🎓 JG University · Sem 5 Integrated Project Presentation</span>
+        </div>
+        <div class="td-controls">
+            <a href="https://www.canva.com/design/DAGPitchWeavo/view" target="_blank" class="btn-ctrl btn-canva">
+                <span>Open in Canva ↗</span>
+            </a>
+            <a href="/Weavo_JG_University_Final_Presentation.pptx" download class="btn-ctrl">
+                <span>Download .PPTX</span>
+            </a>
+            <button class="btn-ctrl" onclick="toggleFullScreen()">Fullscreen ⛶</button>
+        </div>
+    </div>
+
+    <!-- 16:9 Presentation Stage -->
+    <div class="slide-stage" id="slideStage">
+
+        <!-- SLIDE 1: COVER PAGE (MANDATORY TEMPLATE) -->
+        <div class="slide cover-slide active" data-index="1">
+            <div class="univ-header">
+                <h1 class="univ-logo-title">JG UNIVERSITY</h1>
+                <div class="univ-subtitle">EXCELLENCE BY CHOICE</div>
+                <div class="univ-trust">Sponsored by ASIA Charitable Trust · School of Engineering · Information Technology</div>
+            </div>
+
+            <div class="cover-project-box">
+                <div class="cover-project-title">Weavo</div>
+                <div class="cover-project-sub">Online Local Artisan Marketplace — From the loom to your living room</div>
+                <div style="margin-top:6px;font-size:13.5px;font-weight:700;color:var(--terracotta);">
+                    🌐 Live Website: <a href="https://weavo-village.netlify.app/" target="_blank" style="color:var(--terracotta);text-decoration:underline;">https://weavo-village.netlify.app/</a>
+                </div>
+            </div>
+
+            <div class="cover-middle-row">
+                <div class="sub-label">Submitted by :</div>
+                <table class="cover-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">No</th>
+                            <th>Name</th>
+                            <th>Roll number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Eklavya Desai</strong></td><td>242355</td></tr>
+                        <tr><td>2</td><td><strong>Faizankhan Pathan</strong></td><td>242432</td></tr>
+                        <tr><td>3</td><td><strong>Krish Padsala</strong></td><td>242397</td></tr>
+                        <tr><td>4</td><td><strong>Fenil Vora</strong></td><td>242473</td></tr>
+                        <tr><td>5</td><td><strong>Nihar Sangani</strong></td><td>242448</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="submitted-to-box">
+                <div style="color:var(--text-muted);font-size:12px;font-weight:700">Submitted to :</div>
+                <div class="prof-list">
+                    <span>Prof. Ashish Sir</span>
+                    <span>Prof. Ajay Sir</span>
+                    <span>Prof. Hemlata Ma’am</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: BUSINESS IDEA -->
+        <div class="slide" data-index="2">
+            <div class="slide-num">SLIDE 01</div>
+            <div class="slide-title">Business Idea and Introduction</div>
+            <div class="grid-2">
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div class="card-box">
+                        <h3>💡 What we offer</h3>
+                        <p>A direct-to-consumer online craft marketplace connecting certified rural Gujarat artisans (Jamnagar Bandhani, Patan Patola, Dhamadka Ajrakh, Gundiyali Terracotta) with conscious buyers.</p>
+                    </div>
+                    <div class="card-box">
+                        <h3>🎯 Main purpose</h3>
+                        <p>Dismantle exploitative middleman cartels so rural handloom weavers retain 90–92% of retail price, preserving 5,000 years of living cultural heritage.</p>
+                    </div>
+                    <div class="card-box">
+                        <h3>⭐ What makes it different</h3>
+                        <p>Dual-role platform (distinct Buyer & Artisan Seller portals), live price and stock customizer, DPDP Act 2023 legal consent, and multi-threaded concurrency reservation.</p>
+                    </div>
+                </div>
+                <div class="card-box alt" style="justify-content:center;align-items:center;text-align:center;">
+                    <img src="/images/weavo-ribbon-hero.svg" style="max-height:180px;margin-bottom:14px;" alt="Hero" />
+                    <h3 style="font-size:18px;color:var(--teal)">Weavo Marketplace</h3>
+                    <p style="font-style:italic;color:var(--terracotta)">From the loom to your living room.</p>
+                    <p style="font-size:12px;margin-top:8px">92% Direct Karigar Livelihood · 100% GI Cluster Origin</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: PROBLEM IDENTIFICATION -->
+        <div class="slide" data-index="3">
+            <div class="slide-num">SLIDE 02</div>
+            <div class="slide-title">Problem Identification and Idea Generation</div>
+            <div class="grid-3" style="height:auto;margin-bottom:16px;">
+                <div class="card-box">
+                    <h3>⚠️ The problem</h3>
+                    <ul>
+                        <li>Middlemen extract 50–60% margins</li>
+                        <li>Artisans earn below daily living wage</li>
+                        <li>Powerloom knockoffs flood retail markets</li>
+                        <li>Buyers lack verifiable GI provenance</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>👥 Who faces it</h3>
+                    <ul>
+                        <li>200,000+ weavers across Gujarat</li>
+                        <li>Urban conscious handloom buyers</li>
+                        <li>Handicraft preservation societies</li>
+                        <li>Institutional & festive gift buyers</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>💡 How the idea came</h3>
+                    <ul>
+                        <li>Field observations in Bhujodi & Patan</li>
+                        <li>Massive gap between loom cost & retail price</li>
+                        <li>GI Registry laws lacked e-commerce backing</li>
+                        <li>Need for automated cloud fair trade tech</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-box alt" style="padding:14px 20px;">
+                <strong style="color:var(--teal);font-size:13px;">🎯 Jobs-to-be-Done:</strong>
+                <span style="font-size:12.5px;color:var(--navy)">"When I purchase authentic Indian heritage crafts, I want certified provenance and direct artisan payout, so my money empowers rural families rather than middlemen."</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: MARKET RESEARCH -->
+        <div class="slide" data-index="4">
+            <div class="slide-num">SLIDE 03</div>
+            <div class="slide-title">Market Research and Opportunity Analysis</div>
+            <div class="grid-3">
+                <div class="card-box">
+                    <h3>🎓 Target customers</h3>
+                    <ul>
+                        <li>Conscious ethnic shoppers (18–45)</li>
+                        <li>Home interior decorators & connoisseurs</li>
+                        <li>NRI collectors seeking genuine GI items</li>
+                        <li>Need: authentic, transparent, direct</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>👍 Strengths</h3>
+                    <ul>
+                        <li>Dual Buyer & Seller portal system</li>
+                        <li>92% direct artisan payout ratio</li>
+                        <li>GI Certificate verification database</li>
+                        <li>Java + Python high-performance stack</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>⚠️ Weaknesses</h3>
+                    <ul>
+                        <li>Early brand awareness building</li>
+                        <li>Rural smartphone training curve</li>
+                        <li>Third-party postal transit dependencies</li>
+                        <li>Simulated payment sandbox stage</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>⚖️ Competitors</h3>
+                    <ul>
+                        <li>FabIndia / Jaypore: massive 60% markups</li>
+                        <li>Amazon / Flipkart: unverified counterfeit risk</li>
+                        <li>Government exhibitions: seasonal only</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>🚀 Opportunities</h3>
+                    <ul>
+                        <li>Surging D2C sustainable textile demand</li>
+                        <li>DPIIT & ONDC national network integration</li>
+                        <li>Festival season Diwali/Navratri spikes</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>🛡️ Threats</h3>
+                    <ul>
+                        <li>Cheap synthetic polyester imitations</li>
+                        <li>Breakage risk on terracotta pottery</li>
+                        <li>Raw silk yarn price fluctuations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: BUSINESS MODEL CANVAS -->
+        <div class="slide" data-index="5">
+            <div class="slide-num">SLIDE 04</div>
+            <div class="slide-title">Business Model Canvas (9 Key Pillars)</div>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;font-size:11px;margin-bottom:12px;">
+                <div class="card-box" style="padding:10px;">
+                    <strong style="color:var(--teal)">Key Partners</strong>
+                    <p>• Weaver Cooperatives<br>• GI Registry Bodies<br>• India Post / Delhivery<br>• JG Incubator</p>
+                </div>
+                <div class="card-box" style="padding:10px;">
+                    <strong style="color:var(--teal)">Key Activities</strong>
+                    <p>• Artisan KYC Verification<br>• Concurrency Order Engine<br>• Craft Provenance Audits<br>• DPDP Compliance</p>
+                </div>
+                <div class="card-box" style="padding:10px;">
+                    <strong style="color:var(--teal)">Value Propositions</strong>
+                    <p>• 92% Direct Artisan Pay<br>• Certified GI Products<br>• Live Price Customizer<br>• Tax Invoice Receipts</p>
+                </div>
+                <div class="card-box" style="padding:10px;">
+                    <strong style="color:var(--teal)">Customer Relations</strong>
+                    <p>• Artisan Self-Serve Portal<br>• Verified Buyer Reviews<br>• Zero Dark Patterns<br>• Transparent Disputes</p>
+                </div>
+                <div class="card-box" style="padding:10px;">
+                    <strong style="color:var(--teal)">Customer Segments</strong>
+                    <p>• Handloom Enthusiasts<br>• Festive & Wedding Buyers<br>• Cultural Collectors<br>• Institutional Gifting</p>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card-box alt" style="padding:12px;">
+                    <strong style="color:var(--navy);font-size:13px;">Cost Structure:</strong>
+                    <p>Cloud hosting & database (Render, Netlify, Supabase), eco-packaging subsidies, artisan field onboarding, payment gateway sandbox.</p>
+                </div>
+                <div class="card-box alt" style="padding:12px;">
+                    <strong style="color:var(--teal);font-size:13px;">Revenue Streams:</strong>
+                    <p>8% Platform maintenance commission on sales, Karigar Pro verified cluster subscription (₹299/mo), premium festival showcases.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: REVENUE STRATEGY -->
+        <div class="slide" data-index="6">
+            <div class="slide-num">SLIDE 05</div>
+            <div class="slide-title">Business Model and Revenue Strategy</div>
+            <div class="grid-3" style="height:auto;margin-bottom:20px;">
+                <div class="card-box">
+                    <h3>🔄 E-commerce model</h3>
+                    <ul>
+                        <li>Direct C2C / B2C Artisan Marketplace</li>
+                        <li>Zero middleman distribution layer</li>
+                        <li>Artisans set prices and customize listings</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>🌐 Sales channel</h3>
+                    <ul>
+                        <li>Direct through Weavo modern web app</li>
+                        <li>Global edge delivery via Netlify CDN</li>
+                        <li>Direct customer ownership & DPDP privacy</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>💰 How we earn</h3>
+                    <ul>
+                        <li>8% Platform maintenance fee</li>
+                        <li>Karigar Pro artisan membership</li>
+                        <li>Shipping logistics fee on orders under ₹2.5K</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid-3">
+                <div class="card-box alt" style="text-align:center;">
+                    <div style="font-size:26px;font-weight:800;color:var(--teal)">92% Direct</div>
+                    <p style="font-size:12px;">Artisan bank account share</p>
+                </div>
+                <div class="card-box alt" style="text-align:center;">
+                    <div style="font-size:26px;font-weight:800;color:var(--teal-light)">8% Fee</div>
+                    <p style="font-size:12px;">Platform operations & cloud</p>
+                </div>
+                <div class="card-box alt" style="text-align:center;">
+                    <div style="font-size:26px;font-weight:800;color:var(--terracotta)">₹299 / mo</div>
+                    <p style="font-size:12px;">Karigar Pro verified tier</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: WORKING MVP -->
+        <div class="slide" data-index="7">
+            <div class="slide-num">SLIDE 06</div>
+            <div class="slide-title">Product Development and Validation (MVP)</div>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3>Our Working MVP Platform</h3>
+                    <ul>
+                        <li><strong>Dual-Role Portals:</strong> Dedicated Buyer vs Artisan Seller views</li>
+                        <li><strong>Artisan Price Customizer:</strong> Live price in ₹ and stock updater</li>
+                        <li><strong>Test Payment Gateway:</strong> UPI QR, Card & Wallet sandboxes</li>
+                        <li><strong>Concurrency Lock:</strong> ReentrantLock preventing double-selling</li>
+                        <li><strong>DPDP Act 2023:</strong> Explicit user privacy consent module</li>
+                        <li><strong>Java File I/O:</strong> Tax invoice receipts & catalog CSV export</li>
+                        <li><strong>Verified Reviews:</strong> Exclusive to confirmed order numbers</li>
+                    </ul>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div class="card-box alt">
+                        <h3>🧪 Demand Validation</h3>
+                        <p>• Surveyed JG University students for ethnic craft preferences<br>• Consulted master weavers in Jamnagar & Bhujodi<br>• Ran k6 festival load spikes to ensure 0 race conditions</p>
+                    </div>
+                    <div class="card-box alt">
+                        <h3>🚀 Post-Viva Enhancements</h3>
+                        <p>• Production Razorpay live payment gateway<br>• National ONDC e-commerce network node<br>• Voice-assisted mobile application for rural weavers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: THE STARTUP TEAM -->
+        <div class="slide" data-index="8">
+            <div class="slide-num">SLIDE 07</div>
+            <div class="slide-title">Building the Startup Team & Responsibilities</div>
+            <div class="grid-team">
+                <div class="card-box">
+                    <strong style="font-size:14px;color:var(--navy)">Eklavya Desai</strong>
+                    <span style="font-size:11px;color:var(--teal);font-weight:700">Roll: 242355</span>
+                    <span style="font-size:10.5px;color:var(--terracotta);font-weight:700">Backend & Concurrency</span>
+                    <ul>
+                        <li>Java 21 multi-module</li>
+                        <li>ReentrantLock engine</li>
+                        <li>Custom exceptions</li>
+                        <li>Spring Boot API</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <strong style="font-size:14px;color:var(--navy)">Faizankhan Pathan</strong>
+                    <span style="font-size:11px;color:var(--teal);font-weight:700">Roll: 242432</span>
+                    <span style="font-size:10.5px;color:var(--terracotta);font-weight:700">E-Commerce & Catalog</span>
+                    <ul>
+                        <li>User journey flow</li>
+                        <li>Catalogue mapping</li>
+                        <li>Logistics & delivery</li>
+                        <li>Packaging terms</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <strong style="font-size:14px;color:var(--navy)">Krish Padsala</strong>
+                    <span style="font-size:11px;color:var(--teal);font-weight:700">Roll: 242397</span>
+                    <span style="font-size:10.5px;color:var(--terracotta);font-weight:700">Full-Stack & Cloud</span>
+                    <ul>
+                        <li>Modern UI/UX redesign</li>
+                        <li>Ribbon vector art</li>
+                        <li>Render & Netlify deploy</li>
+                        <li>Python REST bridge</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <strong style="font-size:14px;color:var(--navy)">Fenil Vora</strong>
+                    <span style="font-size:11px;color:var(--teal);font-weight:700">Roll: 242473</span>
+                    <span style="font-size:10.5px;color:var(--terracotta);font-weight:700">Software Testing</span>
+                    <ul>
+                        <li>30+ JUnit 5 tests</li>
+                        <li>JaCoCo coverage</li>
+                        <li>k6 festival load test</li>
+                        <li>Defect log & audit</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <strong style="font-size:14px;color:var(--navy)">Nihar Sangani</strong>
+                    <span style="font-size:11px;color:var(--teal);font-weight:700">Roll: 242448</span>
+                    <span style="font-size:10.5px;color:var(--terracotta);font-weight:700">Startup Policies</span>
+                    <ul>
+                        <li>Lean Canvas & BMC</li>
+                        <li>SWOT & PESTEL</li>
+                        <li>DPIIT registration</li>
+                        <li>DPDP 2023 legal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: LEGAL & DPDP -->
+        <div class="slide" data-index="9">
+            <div class="slide-num">SLIDE 08</div>
+            <div class="slide-title">Legal Structure, Registration and Policies</div>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3>🏢 Legal structure & Registrations</h3>
+                    <ul>
+                        <li><strong>Private Limited Company:</strong> Limited liability for student founders</li>
+                        <li><strong>MCA & DPIIT:</strong> Startup India recognized enterprise</li>
+                        <li><strong>GST Registration:</strong> 18% standard rate on platform fees</li>
+                        <li><strong>PAN & TAN:</strong> Corporate direct tax compliance</li>
+                    </ul>
+                </div>
+                <div class="card-box">
+                    <h3>🏷️ Brand, IP & DPDP Compliance</h3>
+                    <ul>
+                        <li><strong>Weavo Trademark:</strong> Brand classes 24 (textiles) and 35 (retail)</li>
+                        <li><strong>GI of Goods Act 1999:</strong> Authenticity protection for Gujarat clusters</li>
+                        <li><strong>DPDP Act 2023:</strong> Explicit user consent logged for fulfillment</li>
+                        <li><strong>Zero Dark Patterns:</strong> No trick checkboxes or fake scarcity counters</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: E-COMMERCE & ARCHITECTURE -->
+        <div class="slide" data-index="10">
+            <div class="slide-num">SLIDE 09</div>
+            <div class="slide-title">E-Commerce Website and Online Store Setup</div>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3>Architecture Implementation</h3>
+                    <ul>
+                        <li><strong>Domain & Hosting:</strong> Netlify edge CDN + Render backend web service</li>
+                        <li><strong>Microservices & Modules:</strong> Multi-module Java 21 + Python REST API</li>
+                        <li><strong>File I/O Stream:</strong> Formatted text receipts & CSV export via BufferedWriter</li>
+                        <li><strong>Security & HTTPS:</strong> End-to-end TLS encryption and sanitized input</li>
+                    </ul>
+                </div>
+                <div class="card-box alt">
+                    <h3>Dual-Role Experience Matrix</h3>
+                    <p><strong>[ BUYER PORTAL ]</strong><br>Explore GI crafts, live search, quick view modal, sandbox payment, and instant invoice receipt.</p>
+                    <p style="margin-top:10px;"><strong>[ ARTISAN SELLER PORTAL ]</strong><br>Artisan performance dashboard, live price customizer, inventory modifiers, and CSV catalog generation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: PAYMENT & LOGISTICS -->
+        <div class="slide" data-index="11">
+            <div class="slide-num">SLIDE 10</div>
+            <div class="slide-title">Payment, Logistics and Supply Chain</div>
+            <div class="card-box alt" style="padding:14px;margin-bottom:16px;">
+                <strong style="color:var(--teal)">End-to-End User Flow:</strong>
+                <p style="margin-top:4px;">Browse GI Crafts → Cart Review → Test Payment (UPI/Card) → Concurrency Stock Lock → Loom Cluster Dispatch → Delivered with Tax Invoice</p>
+            </div>
+            <div class="grid-3">
+                <div class="card-box">
+                    <h3>💳 Payment Gateway</h3>
+                    <p>Sandbox simulation with test UPI VPA and card tokens. Gracefully handles <code>PaymentFailedException</code>.</p>
+                </div>
+                <div class="card-box">
+                    <h3>📦 Inventory Control</h3>
+                    <p>Atomic stock decrement guarded by synchronized locks prevents festival double-selling.</p>
+                </div>
+                <div class="card-box">
+                    <h3>🚚 Direct Cluster Delivery</h3>
+                    <p>Dispatched directly from Bhujodi, Jamnagar, and Patan via postal networks with tracking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: FINANCIAL PLANNING -->
+        <div class="slide" data-index="12">
+            <div class="slide-num">SLIDE 11</div>
+            <div class="slide-title">Financial Planning and Startup Resources</div>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3>Initial Capital Required: ₹6,50,000</h3>
+                    <ul>
+                        <li>Platform build & cloud infrastructure: ₹1,50,000</li>
+                        <li>Legal incorporation & DPIIT: ₹50,000</li>
+                        <li>Artisan cluster onboarding & photography: ₹1,00,000</li>
+                        <li>Launch marketing & campus campaigns: ₹1,00,000</li>
+                        <li>Working capital reserve & contingency: ₹2,50,000</li>
+                    </ul>
+                </div>
+                <div class="card-box alt">
+                    <h3>Unit Economics & Break-Even</h3>
+                    <p>• <strong>Average Order Value (AOV):</strong> ₹3,200<br>
+                    • <strong>Platform Revenue (8%):</strong> ₹256 per order<br>
+                    • <strong>Direct Karigar Payout (92%):</strong> ₹2,944<br>
+                    • <strong>Monthly Fixed Costs:</strong> ≈₹60,000<br>
+                    • <strong>Break-Even Milestone:</strong> Month 5 (approx. 240 orders/month)<br>
+                    • <strong>Funding:</strong> Bootstrapped founders + JG University incubator + SISFS grant</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: JAVA OOP ARCHITECTURE -->
+        <div class="slide" data-index="13">
+            <div class="slide-num">SLIDE 12</div>
+            <div class="slide-title">Java Core and OOP Architecture</div>
+            <div class="grid-3">
+                <div class="card-box">
+                    <h3>Classes & Inheritance</h3>
+                    <p>Abstract <code>User</code> class extended by <code>Customer</code>, <code>Artisan</code>, and <code>Admin</code> roles.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Polymorphism & Interfaces</h3>
+                    <p><code>PaymentMethod</code> interface implemented by UPI, Card, and Wallet test payment classes.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Custom Exceptions</h3>
+                    <p><code>OutOfStockException</code> and <code>PaymentFailedException</code> for bulletproof error recovery.</p>
+                </div>
+                <div class="card-box">
+                    <h3>ExecutorService Concurrency</h3>
+                    <p>Multi-threaded worker pool with <code>ReentrantLock</code> guarantees zero overselling during spikes.</p>
+                </div>
+                <div class="card-box">
+                    <h3>BufferedWriter File I/O</h3>
+                    <p>Generates downloadable catalog CSVs and human-readable order tax invoice receipts.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Spring Boot 3 + REST</h3>
+                    <p>Clean Controller-Service-Repository multi-module architecture with Actuator monitoring.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: CONCLUSION -->
+        <div class="slide" data-index="14">
+            <div class="slide-num">SLIDE 13</div>
+            <div class="slide-title">Conclusion and Future Vision</div>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3>🎯 The Opportunity</h3>
+                    <p>Over 7 million craftspeople across India need technology equity. Weavo delivers verified GI crafts straight from loom to living room while returning 92% of value to artisans.</p>
+                </div>
+                <div class="card-box">
+                    <h3>✓ Why We Succeed</h3>
+                    <p>Working multi-module software, live deployment on Netlify and Render, 92% direct livelihood impact, and rigorous multi-threaded software testing.</p>
+                </div>
+            </div>
+            <div class="card-box alt" style="text-align:center;padding:24px;margin-top:20px;">
+                <h3 style="font-size:22px;color:var(--teal)">Weavo — From the loom to your living room.</h3>
+                <p style="font-size:14px;color:var(--text-muted);margin-top:6px;">Thank you to our respected mentors Prof. Ashish Sir, Prof. Ajay Sir, and Prof. Hemlata Ma’am for their guidance.</p>
+                <div style="font-weight:800;color:var(--navy);font-size:15px;margin-top:12px;">Questions & Viva Discussion</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Deck Navigation Footer -->
+    <div class="deck-footer">
+        <button class="nav-arrow" onclick="prevSlide()" title="Previous slide (Left Arrow)">◀</button>
+        <span id="slideIndicator">Slide 1 of 14</span>
+        <button class="nav-arrow" onclick="nextSlide()" title="Next slide (Right Arrow)">▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 14;
+
+        function showSlide(idx) {
+            if (idx < 1) idx = 1;
+            if (idx > totalSlides) idx = totalSlides;
+            currentSlide = idx;
+
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            const target = document.querySelector(`.slide[data-index="${idx}"]`);
+            if (target) target.classList.add('active');
+
+            document.getElementById('slideIndicator').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+        });
+
+        function toggleFullScreen() {
+            const elem = document.getElementById('slideStage');
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().catch(err => alert(err.message));
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Render Blueprint for Weavo Local Artisan Marketplace
+# Sem 5 Integrated Project Deployment
+services:
+  # Option 1: Python REST API + Frontend Unified Service (Fastest & Zero Setup)
+  - type: web
+    name: weavo-marketplace-app
+    env: python
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: python weavo-app/server.py
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: FLASK_ENV
+        value: production
+    healthCheckPath: /api/system/status
+    autoDeploy: true
+
+  # Option 2: Java 21 Spring Boot Multi-Module Docker Container (Academic Syllabus Parity)
+  - type: web
+    name: weavo-java-backend
+    env: docker
+    dockerfilePath: ./weavo-app/Dockerfile
+    dockerContext: ./weavo-app
+    plan: free
+    healthCheckPath: /actuator/health
+    autoDeploy: false

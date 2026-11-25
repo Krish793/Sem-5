@@ -1,0 +1,9 @@
+.env
+.env.local
+.git
+target
+**/target
+logs
+receipts
+.idea
+.vscode

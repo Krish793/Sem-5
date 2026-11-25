@@ -1,0 +1,68 @@
+name: KalaSetu CI/CD Pipeline (Build -> Test -> Docker -> Deploy -> Smoke Test)
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build, JUnit 5 Tests & JaCoCo Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Secret Leakage Guard (Ensure .env is never committed)
+        run: |
+          if [ -f ".env" ]; then
+            echo "ERROR: .env file must NEVER be committed!"
+            exit 1
+          fi
+
+      - name: Run Maven Build, JUnit 5 Unit/Integration Tests & JaCoCo Report
+        run: mvn -B clean verify
+
+      - name: Upload JaCoCo Coverage Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage-reports
+          path: "**/target/site/jacoco/**"
+
+  docker-build-and-deploy:
+    name: Build Docker Container & Smoke Test Cloud Endpoint
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build & Push Docker Image to GHCR
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ secrets.GHCR_TOKEN != '' }}
+          tags: ghcr.io/${{ github.repository_owner }}/kalasetu-marketplace:${{ github.sha }}
+
+      - name: Trigger Managed Cloud Deploy Webhook (Render / Railway)
+        if: ${{ secrets.DEPLOY_WEBHOOK_URL != '' }}
+        run: curl -fsS -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}"
+
+      - name: Post-Deploy Cloud Smoke Test
+        if: ${{ vars.CLOUD_APP_URL != '' }}
+        run: |
+          sleep 20
+          curl -fsS "${{ vars.CLOUD_APP_URL }}/actuator/health" | grep -q '"status":"UP"'
+          curl -fsS "${{ vars.CLOUD_APP_URL }}/api/products" | grep -q 'Bandhani'
